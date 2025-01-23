@@ -1,7 +1,6 @@
 package com.projeto.dslist.service;
 
 import com.projeto.dslist.dto.GameListDTO;
-import com.projeto.dslist.dto.GameMinDTO;
 import com.projeto.dslist.entities.Game;
 import com.projeto.dslist.entities.GameList;
 import com.projeto.dslist.repositories.GameListRepository;
@@ -19,8 +18,7 @@ public class GameListService {
   @Transactional(readOnly = true)
   public List<GameListDTO> findAll() {
     List<GameList> result = gameListRepository.findAll();
-    return result.stream().map(x -> new GameListDTO(x)).toList();
-
+    return result.stream().map(GameListDTO::new).toList();
   }
 
 }

@@ -1,5 +1,6 @@
 package com.projeto.dslist.service;
 
+import com.projeto.dslist.Projections.GameMinProjection;
 import com.projeto.dslist.dto.GameDTO;
 import com.projeto.dslist.dto.GameMinDTO;
 import com.projeto.dslist.entities.Game;
@@ -28,6 +29,13 @@ public class GameService {
     return new GameDTO(result);
 
   }
+
+  public List<GameMinDTO> findByList(Long listId) {
+    List<GameMinProjection> result = gameRepository.searchByList(listId);
+    return result.stream().map(x -> new GameMinDTO(x)).toList();
+
+  }
+
 
 
 }
